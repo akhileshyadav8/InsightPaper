@@ -28,16 +28,9 @@ Includes a structural description, modular component breakdown, and a dynamicall
 Displays datasets used, performance benchmarks, core findings, and a critical analysis of strengths and limitations.
 ![Results](assets/results.png)
 
----
-
-## 🔒 Security: API Key Protection
-
-> [!IMPORTANT]
-> **Your Gemini API Key is 100% Secure & Private:**
-> - The API key is stored securely in your browser's local sandbox (`localStorage`).
-> - It is **never** committed to the codebase or pushed to GitHub.
-> - The backend receives the key during active requests via secure request headers and never saves it on the server disk.
-> - Alternatively, you can set it as a system environment variable (`GEMINI_API_KEY`) on your host machine to avoid entering it in the browser entirely.
+### 6. Ask Paper Tab (Q&A Chatbot)
+Enables interactive conversations directly with the research paper to explain equations, clarify concepts, or fetch specific details.
+![Ask Paper](assets/ask_paper.png)
 
 ---
 
