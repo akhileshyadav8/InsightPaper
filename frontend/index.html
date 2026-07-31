@@ -46,7 +46,7 @@
                     <i class="fa-solid fa-moon"></i>
                 </button>
                 
-                <button id="api-key-btn" class="glass-btn secondary-btn" title="Configure API Key">
+                <button id="api-key-btn" class="glass-btn secondary-btn" onclick="document.getElementById('api-key-modal').classList.add('active')" title="Configure API Key">
                     <i class="fa-solid fa-key"></i> <span class="btn-text">API Key</span>
                 </button>
 
@@ -370,11 +370,11 @@
     </div>
 
     <!-- API Key Modal -->
-    <div id="api-key-modal" class="modal-overlay">
+    <div id="api-key-modal" class="modal-overlay" onclick="if(event.target===this) this.classList.remove('active')">
         <div class="modal-card glass-panel">
             <div class="modal-header">
                 <h3><i class="fa-solid fa-key"></i> Gemini API Settings</h3>
-                <button id="close-modal-btn" class="close-btn">&times;</button>
+                <button id="close-modal-btn" class="close-btn" onclick="document.getElementById('api-key-modal').classList.remove('active')">&times;</button>
             </div>
             <div class="modal-body">
                 <p>Configure your Google Gemini API Key. The key is saved securely in your browser's local storage and is never sent to any third party other than Google's official endpoints.</p>
