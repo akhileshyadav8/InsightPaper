@@ -73,3 +73,27 @@ http://127.0.0.1:8000
 
 ## 🤝 Contributing
 Contributions are welcome! Please open an issue or submit a pull request.
+
+---
+
+## 🔗 Connect With Me
+
+<p>
+  🌐 <a href="https://akhileshyadav-portfolio-theta.vercel.app" target="_blank">Portfolio</a>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+
+  <img src="https://raw.githubusercontent.com/LelouchFR/skill-icons/main/assets/linkedin.svg" width="20" align="center"/>
+  <a href="https://www.linkedin.com/in/akhilesh-yadav88/" target="_blank">LinkedIn</a>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+
+  <img src="https://raw.githubusercontent.com/LelouchFR/skill-icons/main/assets/github-dark.svg" width="20" align="center"/>
+  <a href="https://github.com/akhileshyadav8" target="_blank">GitHub</a>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+
+  <img src="https://raw.githubusercontent.com/LelouchFR/skill-icons/main/assets/gmail-dark.svg" width="20" align="center"/>
+  <a href="mailto:yadavakhil766@gmail.com">Gmail</a>
+</p>
+
+---
+
+⭐ If you found this repository useful, consider giving it a star!
