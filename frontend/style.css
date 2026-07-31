@@ -1294,9 +1294,13 @@ body {
     display: none !important;
 }
 
+.print-branding-header {
+    display: none;
+}
+
 /* Print Rules for PDF Export */
 @media print {
-    html, body, .app-container, .main-content, .screen-section, .dashboard-body, .summary-panel, .tab-contents {
+    html, body, .app-container, .main-content, #dashboard-screen, .dashboard-body, .summary-panel, .tab-contents {
         height: auto !important;
         min-height: 0 !important;
         max-height: none !important;
@@ -1307,19 +1311,60 @@ body {
         background: #ffffff !important;
         color: #000000 !important;
     }
-    
+
+    #upload-screen, 
+    #loading-screen,
     .app-header, 
     .glow-bg, 
     .pdf-panel, 
     .summary-tabs, 
-    #tab-chat,
-    .chat-container,
     .chat-input-area, 
     .chat-suggestions, 
     .dashboard-toggles, 
     .copy-btn,
-    .paper-badge {
+    .paper-badge,
+    .message-avatar {
         display: none !important;
+    }
+
+    /* Top Branding Banner for PDF Print */
+    .print-branding-header {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 18px 24px !important;
+        border-bottom: 3px solid #6366f1 !important;
+        margin-bottom: 24px !important;
+        background: #f8fafc !important;
+        border-radius: 12px !important;
+        border: 1px solid #e2e8f0 !important;
+    }
+
+    .print-brand-title {
+        font-size: 26px !important;
+        font-weight: 800 !important;
+        color: #4f46e5 !important;
+        margin: 0 !important;
+        font-family: 'Outfit', sans-serif !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+    }
+
+    .print-brand-subtitle {
+        font-size: 13px !important;
+        color: #64748b !important;
+        margin: 4px 0 0 0 !important;
+        font-weight: 500 !important;
+    }
+
+    .print-author {
+        font-size: 14px !important;
+        color: #334155 !important;
+    }
+
+    .print-author strong {
+        color: #4f46e5 !important;
     }
 
     .app-container {
@@ -1327,12 +1372,40 @@ body {
         max-width: 100% !important;
     }
 
-    .tab-content:not(#tab-chat) {
+    .tab-content {
         display: flex !important;
         flex-direction: column !important;
         gap: 16px !important;
         margin-bottom: 30px !important;
         page-break-inside: avoid;
+    }
+
+    /* Print styling for Ask Paper Chat history */
+    .chat-container {
+        display: block !important;
+        min-height: 0 !important;
+        height: auto !important;
+    }
+
+    .chat-messages {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        padding: 0 !important;
+        overflow: visible !important;
+    }
+
+    .chat-message {
+        max-width: 100% !important;
+        margin-bottom: 10px !important;
+    }
+
+    .message-bubble {
+        background: #f1f5f9 !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 12px !important;
+        padding: 12px 16px !important;
     }
 
     .glass-panel {
