@@ -7,6 +7,8 @@
 
 InsightPaper is a premium, full-stack, AI-powered Research Paper Summarizer. It translates dense academic jargon into clear, structured, human-understandable sections (Overview, Research Gap, Methodology, Architecture Flowchart, Results) and provides a context-grounded Q&A chatbot to let you converse directly with the paper.
 
+### 🚀 [Live Demo](https://insightpaper-1x9h.onrender.com/)
+
 ---
 
 ## 🌟 Visual Demo
