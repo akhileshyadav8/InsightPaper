@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,6 +41,10 @@
                         <option value="gemini-2.0-flash">Gemini 2.0 Flash (Legacy Fast)</option>
                     </select>
                 </div>
+
+                <button id="theme-toggle-btn" class="glass-btn secondary-btn" title="Toggle Light/Dark Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
                 
                 <button id="api-key-btn" class="glass-btn secondary-btn" title="Configure API Key">
                     <i class="fa-solid fa-key"></i> <span class="btn-text">API Key</span>
@@ -129,6 +133,12 @@
                         </div>
                     </div>
                     <div class="dashboard-toggles">
+                        <button id="export-md-btn" class="glass-btn secondary-btn" title="Export summary as Markdown file">
+                            <i class="fa-solid fa-file-arrow-down"></i> <span>Export .MD</span>
+                        </button>
+                        <button id="export-pdf-btn" class="glass-btn secondary-btn" title="Export summary as PDF document">
+                            <i class="fa-solid fa-file-pdf"></i> <span>Export PDF</span>
+                        </button>
                         <button id="toggle-pdf-btn" class="glass-btn active">
                             <i class="fa-solid fa-columns"></i> <span>Split PDF View</span>
                         </button>
@@ -170,15 +180,24 @@
                             <!-- Tab 1: Overview -->
                             <div id="tab-overview" class="tab-content active">
                                 <div class="glass-panel summary-section card-highlight">
-                                    <h3 class="section-title"><i class="fa-solid fa-quote-left icon-accent"></i> Core Achievement</h3>
+                                    <div class="section-header-flex">
+                                        <h3 class="section-title"><i class="fa-solid fa-quote-left icon-accent"></i> Core Achievement</h3>
+                                        <button class="copy-btn" data-copy-target="one-sentence-summary" title="Copy section"><i class="fa-regular fa-copy"></i> Copy</button>
+                                    </div>
                                     <p id="one-sentence-summary" class="one-sentence-text">A single sentence summary goes here.</p>
                                 </div>
                                 <div class="glass-panel summary-section">
-                                    <h3 class="section-title"><i class="fa-solid fa-align-left icon-accent"></i> Abstract (Simplified)</h3>
+                                    <div class="section-header-flex">
+                                        <h3 class="section-title"><i class="fa-solid fa-align-left icon-accent"></i> Abstract (Simplified)</h3>
+                                        <button class="copy-btn" data-copy-target="abstract-simple" title="Copy section"><i class="fa-regular fa-copy"></i> Copy</button>
+                                    </div>
                                     <p id="abstract-simple" class="long-text">Simplified abstract text.</p>
                                 </div>
                                 <div class="glass-panel summary-section">
-                                    <h3 class="section-title"><i class="fa-solid fa-circle-info icon-accent"></i> Practical Takeaways</h3>
+                                    <div class="section-header-flex">
+                                        <h3 class="section-title"><i class="fa-solid fa-circle-info icon-accent"></i> Practical Takeaways</h3>
+                                        <button class="copy-btn" data-copy-target="practical-takeaways" title="Copy section"><i class="fa-regular fa-copy"></i> Copy</button>
+                                    </div>
                                     <p id="practical-takeaways" class="long-text">Takeaways text.</p>
                                 </div>
                             </div>
@@ -187,16 +206,25 @@
                             <div id="tab-gap" class="tab-content">
                                 <div class="grid-2">
                                     <div class="glass-panel summary-section warning-border">
-                                        <h3 class="section-title"><i class="fa-solid fa-circle-exclamation warning-color"></i> The Problem</h3>
+                                        <div class="section-header-flex">
+                                            <h3 class="section-title"><i class="fa-solid fa-circle-exclamation warning-color"></i> The Problem</h3>
+                                            <button class="copy-btn" data-copy-target="gap-problem" title="Copy section"><i class="fa-regular fa-copy"></i> Copy</button>
+                                        </div>
                                         <p id="gap-problem" class="long-text">The problem statement goes here.</p>
                                     </div>
                                     <div class="glass-panel summary-section caution-border">
-                                        <h3 class="section-title"><i class="fa-solid fa-circle-xmark caution-color"></i> Previous Limitations</h3>
+                                        <div class="section-header-flex">
+                                            <h3 class="section-title"><i class="fa-solid fa-circle-xmark caution-color"></i> Previous Limitations</h3>
+                                            <button class="copy-btn" data-copy-target="gap-limitations" title="Copy section"><i class="fa-regular fa-copy"></i> Copy</button>
+                                        </div>
                                         <p id="gap-limitations" class="long-text">Limitations of prior work.</p>
                                     </div>
                                 </div>
                                 <div class="glass-panel summary-section success-border">
-                                    <h3 class="section-title"><i class="fa-solid fa-circle-check success-color"></i> Gap Addressed</h3>
+                                    <div class="section-header-flex">
+                                        <h3 class="section-title"><i class="fa-solid fa-circle-check success-color"></i> Gap Addressed</h3>
+                                        <button class="copy-btn" data-copy-target="gap-addressed" title="Copy section"><i class="fa-regular fa-copy"></i> Copy</button>
+                                    </div>
                                     <p id="gap-addressed" class="long-text">The gap this paper fills.</p>
                                 </div>
                             </div>
@@ -204,15 +232,24 @@
                             <!-- Tab 3: Methodology -->
                             <div id="tab-methodology" class="tab-content">
                                 <div class="glass-panel summary-section card-highlight">
-                                    <h3 class="section-title"><i class="fa-solid fa-wand-magic-sparkles icon-accent"></i> Core Idea</h3>
+                                    <div class="section-header-flex">
+                                        <h3 class="section-title"><i class="fa-solid fa-wand-magic-sparkles icon-accent"></i> Core Idea</h3>
+                                        <button class="copy-btn" data-copy-target="method-core" title="Copy section"><i class="fa-regular fa-copy"></i> Copy</button>
+                                    </div>
                                     <p id="method-core" class="long-text">Core concept of the method.</p>
                                 </div>
                                 <div class="glass-panel summary-section">
-                                    <h3 class="section-title"><i class="fa-solid fa-list-ol icon-accent"></i> Key Steps</h3>
+                                    <div class="section-header-flex">
+                                        <h3 class="section-title"><i class="fa-solid fa-list-ol icon-accent"></i> Key Steps</h3>
+                                        <button class="copy-btn" data-copy-target="method-steps" title="Copy section"><i class="fa-regular fa-copy"></i> Copy</button>
+                                    </div>
                                     <ol id="method-steps" class="custom-list-steps"></ol>
                                 </div>
                                 <div class="glass-panel summary-section">
-                                    <h3 class="section-title"><i class="fa-solid fa-star icon-accent"></i> What's Novel?</h3>
+                                    <div class="section-header-flex">
+                                        <h3 class="section-title"><i class="fa-solid fa-star icon-accent"></i> What's Novel?</h3>
+                                        <button class="copy-btn" data-copy-target="method-novelty" title="Copy section"><i class="fa-regular fa-copy"></i> Copy</button>
+                                    </div>
                                     <p id="method-novelty" class="long-text">Novelty description.</p>
                                 </div>
                             </div>
@@ -220,7 +257,10 @@
                             <!-- Tab 4: Architecture -->
                             <div id="tab-architecture" class="tab-content">
                                 <div class="glass-panel summary-section">
-                                    <h3 class="section-title"><i class="fa-solid fa-book-open icon-accent"></i> Architecture Overview</h3>
+                                    <div class="section-header-flex">
+                                        <h3 class="section-title"><i class="fa-solid fa-book-open icon-accent"></i> Architecture Overview</h3>
+                                        <button class="copy-btn" data-copy-target="arch-description" title="Copy section"><i class="fa-regular fa-copy"></i> Copy</button>
+                                    </div>
                                     <p id="arch-description" class="long-text">Detailed system description.</p>
                                 </div>
                                 
@@ -244,26 +284,41 @@
                             <!-- Tab 5: Results -->
                             <div id="tab-results" class="tab-content">
                                 <div class="glass-panel summary-section card-highlight">
-                                    <h3 class="section-title"><i class="fa-solid fa-trophy icon-accent"></i> Performance Comparison</h3>
+                                    <div class="section-header-flex">
+                                        <h3 class="section-title"><i class="fa-solid fa-trophy icon-accent"></i> Performance Comparison</h3>
+                                        <button class="copy-btn" data-copy-target="results-performance" title="Copy section"><i class="fa-regular fa-copy"></i> Copy</button>
+                                    </div>
                                     <p id="results-performance" class="long-text">Performance comparison details.</p>
                                 </div>
                                 <div class="grid-2">
                                     <div class="glass-panel summary-section">
-                                        <h3 class="section-title"><i class="fa-solid fa-database icon-accent"></i> Datasets Used</h3>
+                                        <div class="section-header-flex">
+                                            <h3 class="section-title"><i class="fa-solid fa-database icon-accent"></i> Datasets Used</h3>
+                                            <button class="copy-btn" data-copy-target="results-datasets" title="Copy section"><i class="fa-regular fa-copy"></i> Copy</button>
+                                        </div>
                                         <ul id="results-datasets" class="custom-list-bullet"></ul>
                                     </div>
                                     <div class="glass-panel summary-section">
-                                        <h3 class="section-title"><i class="fa-solid fa-square-check icon-accent"></i> Key Findings</h3>
+                                        <div class="section-header-flex">
+                                            <h3 class="section-title"><i class="fa-solid fa-square-check icon-accent"></i> Key Findings</h3>
+                                            <button class="copy-btn" data-copy-target="results-findings" title="Copy section"><i class="fa-regular fa-copy"></i> Copy</button>
+                                        </div>
                                         <ul id="results-findings" class="custom-list-bullet"></ul>
                                     </div>
                                 </div>
                                 <div class="grid-2">
                                     <div class="glass-panel summary-section success-border">
-                                        <h3 class="section-title"><i class="fa-solid fa-circle-up success-color"></i> Strengths</h3>
+                                        <div class="section-header-flex">
+                                            <h3 class="section-title"><i class="fa-solid fa-circle-up success-color"></i> Strengths</h3>
+                                            <button class="copy-btn" data-copy-target="review-strengths" title="Copy section"><i class="fa-regular fa-copy"></i> Copy</button>
+                                        </div>
                                         <ul id="review-strengths" class="custom-list-bullet"></ul>
                                     </div>
                                     <div class="glass-panel summary-section caution-border">
-                                        <h3 class="section-title"><i class="fa-solid fa-circle-down caution-color"></i> Limitations</h3>
+                                        <div class="section-header-flex">
+                                            <h3 class="section-title"><i class="fa-solid fa-circle-down caution-color"></i> Limitations</h3>
+                                            <button class="copy-btn" data-copy-target="review-limitations" title="Copy section"><i class="fa-regular fa-copy"></i> Copy</button>
+                                        </div>
                                         <ul id="review-limitations" class="custom-list-bullet"></ul>
                                     </div>
                                 </div>

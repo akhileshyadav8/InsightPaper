@@ -4,11 +4,13 @@ let modelName = 'gemini-3.5-flash';
 let currentPaperId = '';
 let chatHistory = [];
 let isPdfVisible = true;
+let currentTheme = localStorage.getItem('app_theme') || 'dark';
+let currentSummaryData = null;
 
 // Initialize Mermaid
 mermaid.initialize({
     startOnLoad: false,
-    theme: 'dark',
+    theme: currentTheme === 'light' ? 'default' : 'dark',
     securityLevel: 'loose',
     flowchart: {
         useMaxWidth: true,
@@ -32,6 +34,9 @@ const saveKeyBtn = document.getElementById('save-key-btn');
 const clearKeyBtn = document.getElementById('clear-key-btn');
 const apiKeyInput = document.getElementById('api-key-input');
 const toggleKeyVisibility = document.getElementById('toggle-key-visibility');
+const themeToggleBtn = document.getElementById('theme-toggle-btn');
+const exportMDBtn = document.getElementById('export-md-btn');
+const exportPDFBtn = document.getElementById('export-pdf-btn');
 
 // Loading steps elements
 const stepUpload = document.getElementById('step-upload');
@@ -57,6 +62,21 @@ const suggestBtns = document.querySelectorAll('.suggest-btn');
 
 // Startup Initialization
 function init() {
+    // Apply saved theme
+    applyTheme(currentTheme);
+
+    // Theme toggle listener
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', toggleTheme);
+    }
+
+    // Export buttons listeners
+    if (exportMDBtn) exportMDBtn.addEventListener('click', exportMarkdown);
+    if (exportPDFBtn) exportPDFBtn.addEventListener('click', exportPDF);
+
+    // Setup Copy Buttons
+    setupCopyButtons();
+
     // Model Selection
     modelSelector.value = modelName;
     modelSelector.addEventListener('change', (e) => {
@@ -108,6 +128,135 @@ function init() {
             handleChatSubmit();
         });
     });
+}
+
+// Theme Toggle Logic
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (themeToggleBtn) {
+        const icon = themeToggleBtn.querySelector('i');
+        if (icon) {
+            icon.className = theme === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+    }
+    localStorage.setItem('app_theme', theme);
+    currentTheme = theme;
+}
+
+function toggleTheme() {
+    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(nextTheme);
+    showToast(`Switched to ${nextTheme.toUpperCase()} theme`, "info");
+    
+    // Re-render mermaid graph with new theme if data is loaded
+    if (currentSummaryData && currentSummaryData.architecture && currentSummaryData.architecture.mermaid_diagram) {
+        renderMermaidGraph(currentSummaryData.architecture.mermaid_diagram);
+    }
+}
+
+// Copy to Clipboard Feature
+function setupCopyButtons() {
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.dataset.copyTarget;
+            let textToCopy = '';
+
+            if (targetId) {
+                const targetEl = document.getElementById(targetId);
+                if (targetEl) textToCopy = targetEl.innerText;
+            } else {
+                const parentSection = btn.closest('.summary-section');
+                if (parentSection) {
+                    const textEl = parentSection.querySelector('p, ul, ol');
+                    if (textEl) textToCopy = textEl.innerText;
+                }
+            }
+
+            if (textToCopy) {
+                navigator.clipboard.writeText(textToCopy.trim()).then(() => {
+                    const originalHTML = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.innerHTML = originalHTML;
+                        btn.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    console.error("Copy failed:", err);
+                    showToast("Failed to copy text", "error");
+                });
+            }
+        });
+    });
+}
+
+// Export Summary Features
+function exportMarkdown() {
+    if (!currentSummaryData) {
+        showToast("No summarized paper available to export.", "warning");
+        return;
+    }
+
+    const s = currentSummaryData;
+    let md = `# ${s.title}\n\n`;
+    md += `**Authors:** ${s.authors.join(', ')}\n\n`;
+    md += `**Publication:** ${s.publication_info}\n\n`;
+    md += `---\n\n`;
+    md += `## 💡 Core Achievement\n${s.one_sentence_summary}\n\n`;
+    md += `## 📄 Abstract (Simplified)\n${s.abstract_simple}\n\n`;
+    md += `## 🎯 Practical Takeaways\n${s.practical_takeaways}\n\n`;
+    
+    md += `## 🔍 Research Gap\n`;
+    md += `- **The Problem:** ${s.research_gap.problem}\n`;
+    md += `- **Previous Limitations:** ${s.research_gap.previous_limitations}\n`;
+    md += `- **Gap Addressed:** ${s.research_gap.gap_addressed}\n\n`;
+    
+    md += `## ⚙️ Methodology\n`;
+    md += `**Core Idea:** ${s.methodology.core_idea}\n\n`;
+    md += `**Novelty:** ${s.methodology.novelty}\n\n`;
+    md += `**Key Steps:**\n`;
+    s.methodology.key_steps.forEach((step, idx) => {
+        md += `${idx + 1}. ${step}\n`;
+    });
+    
+    md += `\n## 🏗️ Architecture\n${s.architecture.description}\n\n`;
+    if (s.architecture.mermaid_diagram) {
+        md += `\`\`\`mermaid\n${s.architecture.mermaid_diagram}\n\`\`\`\n\n`;
+    }
+    
+    md += `## 📊 Results & Performance\n`;
+    md += `**Performance Comparison:** ${s.results.performance_comparison}\n\n`;
+    md += `**Datasets Used:** ${s.results.datasets_used.join(', ')}\n\n`;
+    md += `**Key Findings:**\n`;
+    s.results.key_findings.forEach(f => md += `- ${f}\n`);
+    
+    md += `\n**Strengths:**\n`;
+    s.critical_review.strengths.forEach(st => md += `- ${st}\n`);
+    md += `\n**Limitations:**\n`;
+    s.critical_review.limitations.forEach(l => md += `- ${l}\n`);
+
+    const blob = new Blob([md], { type: 'text/markdown;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${s.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_summary.md`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    showToast("Summary exported as Markdown!", "success");
+}
+
+function exportPDF() {
+    if (!currentSummaryData) {
+        showToast("No summarized paper available to export.", "warning");
+        return;
+    }
+    showToast("Preparing document for PDF printing...", "info");
+    setTimeout(() => {
+        window.print();
+    }, 500);
 }
 
 // API Key Logic
@@ -320,6 +469,7 @@ function simulateLoadingProgress() {
 
 // Dashboard Rendering Logic
 async function renderDashboard(summary) {
+    currentSummaryData = summary;
     currentPaperId = summary.paper_id;
     chatHistory = [];
     
@@ -538,7 +688,7 @@ function appendChatMessage(role, text) {
     msgDiv.className = `chat-message ${role}`;
     
     const avatarIcon = role === 'bot' ? 'fa-robot' : 'fa-user';
-    const formattedText = text.replace(/\n/g, '<br>'); // simple line-break conversion
+    const formattedText = text.replace(/\n/g, '<br>');
 
     msgDiv.innerHTML = `
         <div class="message-avatar"><i class="fa-solid ${avatarIcon}"></i></div>
@@ -581,6 +731,7 @@ function switchScreen(screenName) {
 
 function resetApp() {
     currentPaperId = '';
+    currentSummaryData = null;
     chatHistory = [];
     pdfIframe.src = '';
     fileInput.value = '';
@@ -609,7 +760,6 @@ function showToast(message, type = "info") {
     toast.style.border = '1px solid rgba(255, 255, 255, 0.1)';
 
     let icon = '<i class="fa-solid fa-info-circle"></i>';
-    let bgColor = 'rgba(22, 30, 49, 0.9)';
 
     if (type === 'success') {
         icon = '<i class="fa-solid fa-circle-check" style="color:#10b981;"></i>';
@@ -626,7 +776,6 @@ function showToast(message, type = "info") {
     document.body.appendChild(toast);
 
     setTimeout(() => {
-        toast.style.animation = 'none'; // reset animation for fade out
         toast.style.opacity = '0';
         toast.style.transition = 'opacity 0.5s ease';
         setTimeout(() => toast.remove(), 500);
