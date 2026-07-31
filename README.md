@@ -1,10 +1,15 @@
+![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115-green?logo=fastapi)
+![Gemini](https://img.shields.io/badge/Gemini-AI-orange)
+![License](https://img.shields.io/badge/License-MIT-blue)
+
 # InsightPaper 🧠📄
 
 InsightPaper is a premium, full-stack, AI-powered Research Paper Summarizer. It translates dense academic jargon into clear, structured, human-understandable sections (Overview, Research Gap, Methodology, Architecture Flowchart, Results) and provides a context-grounded Q&A chatbot to let you converse directly with the paper.
 
 ---
 
-## 🌟 Visual Dashboard Demo
+## 🌟 Visual Demo
 
 Here is how InsightPaper looks and works:
 
