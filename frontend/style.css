@@ -1296,7 +1296,14 @@ body {
 
 /* Print Rules for PDF Export */
 @media print {
-    body {
+    html, body, .app-container, .main-content, .screen-section, .dashboard-body, .summary-panel, .tab-contents {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: visible !important;
+        display: block !important;
+        flex: none !important;
+        position: static !important;
         background: #ffffff !important;
         color: #000000 !important;
     }
@@ -1305,6 +1312,8 @@ body {
     .glow-bg, 
     .pdf-panel, 
     .summary-tabs, 
+    #tab-chat,
+    .chat-container,
     .chat-input-area, 
     .chat-suggestions, 
     .dashboard-toggles, 
@@ -1318,17 +1327,7 @@ body {
         max-width: 100% !important;
     }
 
-    .dashboard-body {
-        height: auto !important;
-        display: block !important;
-    }
-
-    .summary-panel {
-        width: 100% !important;
-        flex: none !important;
-    }
-
-    .tab-content {
+    .tab-content:not(#tab-chat) {
         display: flex !important;
         flex-direction: column !important;
         gap: 16px !important;
