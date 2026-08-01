@@ -5,7 +5,7 @@
 
 # InsightPaper 🧠📄
 
-InsightPaper is a premium, full-stack, AI-powered Research Paper Summarizer. It translates dense academic jargon into clear, structured, human-understandable sections (Overview, Research Gap, Methodology, Architecture Flowchart, Results) and provides a context-grounded Q&A chatbot to let you converse directly with the paper.
+InsightPaper is a premium, full-stack, AI-powered Research Paper Assistant. It translates dense academic jargon into clear, structured, human-understandable sections (Overview, Research Gap, Methodology, Architecture Flowchart, Results) and provides a context-grounded Q&A chatbot to let you converse directly with the paper.
 
 ### 🚀 [Live Demo](https://insightpaper-1x9h.onrender.com/)
 
@@ -75,6 +75,7 @@ Open your browser and navigate to:
 http://127.0.0.1:8000
 ```
 *(Paste your API Key in the settings modal in the top-right header, or set `GEMINI_API_KEY` in your environment variables before launching).*
+*Get your GEMINI API KEY from here - `https://aistudio.google.com/app/api-keys`*
 
 ---
 
