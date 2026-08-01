@@ -249,15 +249,38 @@ body {
     box-shadow: 0 0 15px var(--primary-glow);
 }
 
-.primary-btn {
+#new-summary-btn,
+button#new-summary-btn,
+.primary-btn,
+[data-theme="light"] #new-summary-btn,
+[data-theme="light"] button#new-summary-btn {
     background: linear-gradient(135deg, #4f46e5, #9333ea) !important;
     border: none !important;
     color: #ffffff !important;
     font-weight: 600 !important;
-    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35) !important;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4) !important;
 }
 
-.primary-btn *, .primary-btn i, .primary-btn span {
+#new-summary-btn *,
+button#new-summary-btn *,
+.primary-btn * {
+    color: #ffffff !important;
+}
+
+.toast,
+div.toast,
+[data-theme="light"] .toast,
+[data-theme="light"] div.toast {
+    background: #0f172a !important;
+    color: #ffffff !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+.toast span,
+.toast i,
+[data-theme="light"] .toast span,
+[data-theme="light"] .toast i {
     color: #ffffff !important;
 }
 
