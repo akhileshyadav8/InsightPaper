@@ -739,22 +739,28 @@ function resetApp() {
 // Utility Toast Notifications
 function showToast(message, type = "info") {
     const toast = document.createElement('div');
+    toast.className = 'toast';
     toast.style.position = 'fixed';
     toast.style.bottom = '20px';
     toast.style.right = '20px';
     toast.style.padding = '12px 24px';
     toast.style.borderRadius = '10px';
     toast.style.backdropFilter = 'blur(10px)';
-    toast.style.color = '#fff';
-    toast.style.zIndex = '999';
-    toast.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.5)';
+
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    toast.style.background = isLight ? '#ffffff' : '#1e293b';
+    toast.style.color = isLight ? '#0f172a' : '#f8fafc';
+    toast.style.border = isLight ? '1px solid #cbd5e1' : '1px solid rgba(255, 255, 255, 0.15)';
+    toast.style.boxShadow = isLight ? '0 10px 25px -5px rgba(0, 0, 0, 0.15)' : '0 10px 25px -5px rgba(0, 0, 0, 0.5)';
+
+    toast.style.zIndex = '9999';
     toast.style.fontFamily = 'Inter, sans-serif';
     toast.style.fontSize = '14px';
+    toast.style.fontWeight = '500';
     toast.style.display = 'flex';
     toast.style.alignItems = 'center';
     toast.style.gap = '10px';
     toast.style.animation = 'modal-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
-    toast.style.border = '1px solid rgba(255, 255, 255, 0.1)';
 
     let icon = '<i class="fa-solid fa-info-circle"></i>';
 

@@ -250,15 +250,20 @@ body {
 }
 
 .primary-btn {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    border: none;
-    color: #fff;
-    font-weight: 600;
+    background: linear-gradient(135deg, #4f46e5, #9333ea) !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35) !important;
+}
+
+.primary-btn *, .primary-btn i, .primary-btn span {
+    color: #ffffff !important;
 }
 
 .primary-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 8px 22px rgba(79, 70, 229, 0.5) !important;
     filter: brightness(1.1);
 }
 
