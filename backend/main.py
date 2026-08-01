@@ -297,4 +297,8 @@ else:
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))
+    print(f"\n=======================================================")
+    print(f"🚀 InsightPaper Server Active!")
+    print(f"👉 Open in Browser: http://127.0.0.1:{port}")
+    print(f"=======================================================\n")
     uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
