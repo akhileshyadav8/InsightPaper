@@ -775,7 +775,8 @@ function showToast(message, type = "info") {
         toast.style.borderLeft = '4px solid #f59e0b';
     }
 
-    toast.innerHTML = `${icon} <span>${message}</span>`;
+    const textColor = isLight ? '#0f172a' : '#ffffff';
+    toast.innerHTML = `${icon} <span style="color:${textColor} !important; font-weight:600;">${message}</span>`;
     document.body.appendChild(toast);
 
     setTimeout(() => {

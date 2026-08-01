@@ -243,44 +243,46 @@ body {
     background: rgba(0, 0, 0, 0.06);
 }
 
+/* Light Theme Button & Toast Overrides */
+[data-theme="light"] #new-summary-btn,
+[data-theme="light"] .primary-btn {
+    background: #e2e8f0 !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] #new-summary-btn *,
+[data-theme="light"] .primary-btn * {
+    color: #0f172a !important;
+}
+
+[data-theme="light"] #new-summary-btn:hover,
+[data-theme="light"] .primary-btn:hover {
+    background: #cbd5e1 !important;
+    color: #000000 !important;
+}
+
+[data-theme="light"] .toast,
+[data-theme="light"] .toast * {
+    color: #0f172a !important;
+}
+
 .glass-btn.active {
     background: rgba(99, 102, 241, 0.15);
     border-color: var(--primary);
     box-shadow: 0 0 15px var(--primary-glow);
 }
 
-#new-summary-btn,
-button#new-summary-btn,
-.primary-btn,
-[data-theme="light"] #new-summary-btn,
-[data-theme="light"] button#new-summary-btn {
+.primary-btn {
     background: linear-gradient(135deg, #4f46e5, #9333ea) !important;
     border: none !important;
     color: #ffffff !important;
     font-weight: 600 !important;
-    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4) !important;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35) !important;
 }
 
-#new-summary-btn *,
-button#new-summary-btn *,
-.primary-btn * {
-    color: #ffffff !important;
-}
-
-.toast,
-div.toast,
-[data-theme="light"] .toast,
-[data-theme="light"] div.toast {
-    background: #0f172a !important;
-    color: #ffffff !important;
-    border: 1px solid #334155 !important;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
-}
-
-.toast span,
-.toast i,
-[data-theme="light"] .toast span,
-[data-theme="light"] .toast i {
+.primary-btn *, .primary-btn i, .primary-btn span {
     color: #ffffff !important;
 }
 
