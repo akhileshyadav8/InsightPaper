@@ -39,6 +39,10 @@ Displays datasets used, performance benchmarks, core findings, and a critical an
 Enables interactive conversations directly with the research paper to explain equations, clarify concepts, or fetch specific details.
 ![Ask Paper](assets/ask_paper.png)
 
+### 7. Export PDF Report
+Exports the complete, multi-page paper summary (Overview, Gap, Methodology, Architecture Flowchart, Results, and Chat History) into a publication-ready PDF document with custom branding.
+![Export PDF Report](assets/export_pdf.png)
+
 ---
 
 ## 🛠️ Tech Stack
