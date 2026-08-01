@@ -253,10 +253,7 @@ function exportPDF() {
         showToast("No summarized paper available to export.", "warning");
         return;
     }
-    showToast("Preparing document for PDF printing...", "info");
-    setTimeout(() => {
-        window.print();
-    }, 500);
+    window.print();
 }
 
 // API Key Logic

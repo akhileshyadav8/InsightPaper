@@ -1324,8 +1324,18 @@ body {
     .dashboard-toggles, 
     .copy-btn,
     .paper-badge,
-    .message-avatar {
+    .message-avatar,
+    body > div[style*="position: fixed"], 
+    .toast,
+    #api-key-modal,
+    .modal-overlay {
         display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
+
+    @page {
+        margin: 10mm;
     }
 
     /* Top Branding Banner for PDF Print */
