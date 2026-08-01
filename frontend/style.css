@@ -1365,7 +1365,12 @@ body {
     }
 
     @page {
-        margin: 10mm;
+        margin: 0;
+        size: auto;
+    }
+
+    body {
+        padding: 12mm !important;
     }
 
     /* Top Branding Banner for PDF Print */
